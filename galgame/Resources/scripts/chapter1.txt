@@ -1,0 +1,84 @@
+# ===========================================
+# Galgame Demo Script — Chapter 1
+# ===========================================
+# Commands:
+#   BG: filename           — change background
+#   CHAR: id file pos      — show character (left/center/right)
+#   CHAR_HIDE: id          — hide character
+#   TEXT: name "text"      — show dialogue
+#   CHOICE: "text" -> label — add a choice
+#   CHOICES:               — display accumulated choices
+#   LABEL: name            — label for jumps
+#   JUMP: label            — jump to label
+#   WAIT: seconds          — pause
+#   END:                   — end script
+# ===========================================
+
+BG: bg_classroom.png
+
+CHAR: sakura char_sakura_normal.png center
+TEXT: Narrator "You arrive at the classroom early in the morning. Someone is already there."
+
+CHAR: mc char_mc_normal.png left
+TEXT: Sakura "Oh, good morning! You're here early too."
+
+TEXT: Me "Morning, Sakura. Couldn't sleep?"
+
+TEXT: Sakura "Something like that... Hey, can I ask you something?"
+
+CHOICE: "Sure, what's up?" -> choice_ask
+CHOICE: "Maybe later, I'm busy." -> choice_busy
+CHOICES:
+
+LABEL: choice_ask
+TEXT: Sakura "Thanks for listening. The cultural festival is coming up..."
+TEXT: Sakura "Our class is doing a maid cafe, but we're short on volunteers."
+TEXT: Sakura "Would you be willing to help out?"
+
+CHAR_HIDE: sakura
+CHAR: sakura char_sakura_hopeful.png center
+
+CHOICE: "Of course, I'd love to help!" -> choice_help
+CHOICE: "I'll think about it." -> choice_think
+CHOICE: "Sorry, I'm too busy." -> choice_decline
+CHOICES:
+
+LABEL: choice_help
+TEXT: Sakura "Really?! Thank you so much!"
+TEXT: Sakura "You're the best! I'll let the others know."
+TEXT: Sakura "Let's meet after school in the home ec room."
+TEXT: Narrator "Sakura's smile is radiant. You feel good about your decision."
+JUMP: ending
+
+LABEL: choice_think
+TEXT: Sakura "That's fair. Please let me know by tomorrow."
+TEXT: Sakura "I really hope you'll join us..."
+TEXT: Narrator "She looks a bit disappointed but still hopeful."
+JUMP: ending
+
+LABEL: choice_decline
+TEXT: Sakura "Oh... I understand."
+TEXT: Sakura "You must have your reasons."
+TEXT: Narrator "Sakura's expression falls. You feel a pang of guilt."
+TEXT: Narrator "Maybe you should reconsider?"
+JUMP: ending
+
+LABEL: choice_busy
+TEXT: Sakura "Oh, okay. Never mind then."
+TEXT: Sakura "It wasn't important."
+TEXT: Narrator "She turns away, and an awkward silence fills the room."
+TEXT: Narrator "You feel like you missed something important."
+JUMP: ending
+
+LABEL: ending
+TEXT: Narrator "And so, the first day of the cultural festival preparations begins..."
+TEXT: Narrator "What adventures await?"
+WAIT: 1
+
+# Show credits
+CHAR_HIDE: sakura
+CHAR_HIDE: mc
+BG: bg_classroom.png
+TEXT: Narrator "--- End of Chapter 1 ---"
+
+END:
