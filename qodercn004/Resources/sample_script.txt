@@ -1,0 +1,22 @@
+// 示例GalGame对话脚本
+// 这只是一个演示格式，实际解析器会更复杂
+
+背景: bg_school_day
+角色进入: alice_right, "alice_normal.png"
+对话: Narrator, "This is a demonstration of the GalGame engine."
+等待
+对话: Alice, "Hello, I'm Alice."
+等待
+对话: Bob, "I'm Bob."
+等待
+选择: "You like Alice", "You like Bob", "Neither"
+如果选择0:
+    对话: Alice, "Thank you!"
+    背景: bg_park_evening
+否则如果选择1:
+    对话: Bob, "Great!"
+    背景: bg_cafe_night
+否则:
+    对话: Narrator, "Maybe there's someone else?"
+结束选择
+对话: Narrator, "Thanks for experiencing our GalGame engine!"

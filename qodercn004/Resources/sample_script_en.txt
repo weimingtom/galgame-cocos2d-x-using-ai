@@ -1,0 +1,22 @@
+// Sample GalGame Dialogue Script
+// This is just a demo format, the actual parser will be more complex
+
+Background: bg_school_day
+Character Enter: alice_right, "alice_normal.png"
+Dialogue: Narrator, "This is a demonstration of the GalGame engine."
+Wait
+Dialogue: Alice, "Hello, I'm Alice."
+Wait
+Dialogue: Bob, "I'm Bob."
+Wait
+Choice: "You like Alice", "You like Bob", "Neither"
+If Choice 0:
+    Dialogue: Alice, "Thank you!"
+    Background: bg_park_evening
+Else If Choice 1:
+    Dialogue: Bob, "Great!"
+    Background: bg_cafe_night
+Else:
+    Dialogue: Narrator, "Maybe there's someone else?"
+End Choice
+Dialogue: Narrator, "Thanks for experiencing our GalGame engine!"
