@@ -1,6 +1,6 @@
 build/
-cocos2d/
-!cocos2d/README_PUT_ENGINE_HERE.txt
+#cocos2d/
+#!cocos2d/README_PUT_ENGINE_HERE.txt
 .vs/
 *.user
 *.suo
