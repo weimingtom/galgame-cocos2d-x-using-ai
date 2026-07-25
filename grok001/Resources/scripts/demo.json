@@ -1,0 +1,71 @@
+{
+  "title": "夏日回廊",
+  "start": "intro",
+  "labels": {
+    "intro": [
+      { "type": "bg", "name": "school_gate" },
+      { "type": "narrate", "text": "暑假前的最后一天。蝉鸣贴在柏油路上，空气黏得像糖。" },
+      { "type": "show", "character": "小雪", "emotion": "微笑", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "你来啦！我还以为你又会迟到。" },
+      { "type": "say", "speaker": "小雪", "text": "走吧——今天只剩一点点时间，你想去哪里？" },
+      {
+        "type": "choice",
+        "options": [
+          { "text": "去天台看夕阳", "goto": "rooftop" },
+          { "text": "去图书馆还书", "goto": "library" },
+          { "text": "其实……我有话想说", "goto": "confess" }
+        ]
+      }
+    ],
+    "rooftop": [
+      { "type": "bg", "name": "rooftop_evening" },
+      { "type": "show", "character": "小雪", "emotion": "惊喜", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "天台的风好舒服……好像把一整年的吵闹都吹走了。" },
+      { "type": "narrate", "text": "橘红色的光落在她肩上。你忽然觉得，这一幕值得被记住。" },
+      { "type": "say", "speaker": "小雪", "text": "明年……你还会回来看这个夕阳吗？" },
+      {
+        "type": "choice",
+        "options": [
+          { "text": "会。和你一起。", "goto": "ending_good" },
+          { "text": "不确定……先好好过完今天吧。", "goto": "ending_normal" }
+        ]
+      }
+    ],
+    "library": [
+      { "type": "bg", "name": "library" },
+      { "type": "show", "character": "小雪", "emotion": "安静", "position": "left" },
+      { "type": "show", "character": "图书委员", "emotion": "认真", "position": "right" },
+      { "type": "say", "speaker": "图书委员", "text": "请保持安静。还书请放到这边。" },
+      { "type": "say", "speaker": "小雪", "text": "（小声）这座图书馆像时间胶囊，对吧？" },
+      { "type": "hide", "character": "图书委员" },
+      { "type": "show", "character": "小雪", "emotion": "微笑", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "把这本书还完，我们的高中也差不多要合上封底了。" },
+      { "type": "jump", "goto": "ending_normal" }
+    ],
+    "confess": [
+      { "type": "bg", "name": "corridor" },
+      { "type": "show", "character": "小雪", "emotion": "害羞", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "……欸？突然这么认真，有点犯规啊。" },
+      { "type": "narrate", "text": "你把藏了很久的心情说了出来。走廊里只剩下风扇的转动声。" },
+      { "type": "say", "speaker": "小雪", "text": "我……其实也一直在等这句话。" },
+      { "type": "wait", "duration": 0.8 },
+      { "type": "jump", "goto": "ending_good" }
+    ],
+    "ending_good": [
+      { "type": "bg", "name": "sunset" },
+      { "type": "clear" },
+      { "type": "show", "character": "小雪", "emotion": "幸福", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "那从今天起，我们的故事换一个书名好不好？" },
+      { "type": "narrate", "text": "【 Good Ending 】夏日回廊 · 约定" },
+      { "type": "end" }
+    ],
+    "ending_normal": [
+      { "type": "bg", "name": "school_gate" },
+      { "type": "clear" },
+      { "type": "show", "character": "小雪", "emotion": "微笑", "position": "center" },
+      { "type": "say", "speaker": "小雪", "text": "嗯，慢慢来也没关系。至少今天，我们一起走过了。" },
+      { "type": "narrate", "text": "【 Normal Ending 】夏日回廊 · 日常" },
+      { "type": "end" }
+    ]
+  }
+}

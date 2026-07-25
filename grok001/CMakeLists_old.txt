@@ -1,0 +1,81 @@
+# Cocos2d-x GalGame Engine Demo
+# Compatible with cocos2d-x 4.0
+cmake_minimum_required(VERSION 3.15)
+
+set(APP_NAME GalGameDemo)
+project(${APP_NAME})
+
+if(NOT DEFINED COCOS2DX_ROOT_PATH)
+    if(DEFINED ENV{COCOS2DX_ROOT})
+        set(COCOS2DX_ROOT_PATH $ENV{COCOS2DX_ROOT})
+    elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/cocos2d/CMakeLists.txt")
+        set(COCOS2DX_ROOT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cocos2d")
+    else()
+        message(FATAL_ERROR
+            "Cannot find cocos2d-x.\n"
+            "Put engine into ./cocos2d  OR  set COCOS2DX_ROOT / -DCOCOS2DX_ROOT_PATH=")
+    endif()
+endif()
+
+set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
+include(CocosBuildSet)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos ${ENGINE_BINARY_PATH}/cocos/core)
+
+set(GAME_SOURCE
+    Classes/AppDelegate.cpp
+    Classes/GalGameScene.cpp
+    Classes/Engine/ScriptParser.cpp
+    Classes/Engine/GalGameEngine.cpp
+    Classes/UI/DialogueBox.cpp
+    Classes/UI/ChoicePanel.cpp
+    Classes/UI/CharacterSprite.cpp
+)
+
+set(GAME_HEADER
+    Classes/AppDelegate.h
+    Classes/GalGameScene.h
+    Classes/Engine/ScriptCommand.h
+    Classes/Engine/ScriptParser.h
+    Classes/Engine/GalGameEngine.h
+    Classes/UI/DialogueBox.h
+    Classes/UI/ChoicePanel.h
+    Classes/UI/CharacterSprite.h
+)
+
+if(WINDOWS)
+    list(APPEND GAME_SOURCE proj.win32/main.cpp proj.win32/main.h)
+elseif(MACOSX)
+    list(APPEND GAME_SOURCE proj.ios_mac/mac/main.cpp)
+elseif(LINUX)
+    list(APPEND GAME_SOURCE proj.linux/main.cpp)
+endif()
+
+add_executable(${APP_NAME} ${GAME_SOURCE} ${GAME_HEADER})
+
+target_include_directories(${APP_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Classes
+        ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Engine
+        ${CMAKE_CURRENT_SOURCE_DIR}/Classes/UI
+        ${CMAKE_CURRENT_SOURCE_DIR}/proj.win32
+)
+
+target_link_libraries(${APP_NAME} cocos2d)
+
+if(WINDOWS)
+    set_target_properties(${APP_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+endif()
+
+cocos_mark_code_files(${APP_NAME})
+
+# Resources
+set(APP_RES_DIR "$<TARGET_FILE_DIR:${APP_NAME}>/Resources")
+add_custom_command(TARGET ${APP_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
+        "${APP_RES_DIR}"
+)

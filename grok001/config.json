@@ -1,0 +1,5 @@
+{
+  "project_name": "GalGameDemo",
+  "design_resolution": { "width": 1280, "height": 720 },
+  "start_script": "scripts/demo.json"
+}
